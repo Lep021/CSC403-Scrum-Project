@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewTetris_Lib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace NewTetris {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       Application.Run(new FrmMain());
+      Shapetype
     }
   }
 }

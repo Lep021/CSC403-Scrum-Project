@@ -46,11 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="code\Game.cs" />
-    <Compile Include="code\Piece.cs" />
-    <Compile Include="code\PieceFactory.cs" />
-    <Compile Include="code\PieceType.cs" />
-    <Compile Include="code\PlayingField.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +85,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data\block_piece.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NewTetris Lib\NewTetris Lib.csproj">
+      <Project>{F6E22239-9345-406B-853B-71ECC7B41ED7}</Project>
+      <Name>NewTetris Lib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
