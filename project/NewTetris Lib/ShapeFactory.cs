@@ -1,5 +1,13 @@
 ﻿namespace NewTetris_Lib {
+  /// <summary>
+  /// Uses the Factory design pattern to generate shape objects
+  /// </summary>
   public class ShapeFactory {
+    /// <summary>
+    /// Factory method that makes shape objects based on the shape type given
+    /// </summary>
+    /// <param name="type">Shape type to create the shape from</param>
+    /// <returns>Shape object</returns>
     public static Shape MakeShape(ShapeType type) {
       Orientation[] orientations = null;
       switch (type) {
@@ -30,8 +38,8 @@
           orientations = new Orientation[] {
             MakeOrientation(new int[,] {
               {0,0,0,0},
-              {0,0,0,1},
-              {0,1,1,1},
+              {0,0,1,0},
+              {1,1,1,0},
               {0,0,0,0}}),
             MakeOrientation(new int[,] {
               {0,0,0,0},
@@ -65,8 +73,8 @@
             MakeOrientation(new int[,] {
               {0,0,0,0},
               {0,0,0,0},
-              {0,1,1,1},
-              {0,0,0,1}}),
+              {1,1,1,0},
+              {0,0,1,0}}),
             MakeOrientation(new int[,] {
               {0,0,0,0},
               {0,0,1,0},
@@ -78,24 +86,14 @@
           orientations = new Orientation[] {
             MakeOrientation(new int[,] {
               {0,0,0,0},
-              {0,1,1,0},
               {1,1,0,0},
+              {0,1,1,0},
               {0,0,0,0}}),
             MakeOrientation(new int[,] {
-              {0,1,0,0},
-              {0,1,1,0},
+              {0,0,0,0},
               {0,0,1,0},
-              {0,0,0,0}}),
-            MakeOrientation(new int[,] {
-              {0,0,0,0},
-              {0,0,0,0},
-              {0,0,1,1},
-              {0,1,1,0}}),
-            MakeOrientation(new int[,] {
-              {1,0,0,0},
-              {1,1,0,0},
-              {0,1,0,0},
-              {0,0,0,0}}),
+              {0,1,1,0},
+              {0,1,0,0}}),
           };
           break;
         case ShapeType.TBLOCK:
@@ -106,15 +104,15 @@
               {0,0,0,0},
               {0,0,0,0}}),
             MakeOrientation(new int[,] {
-              {0,0,1,0},
-              {0,0,1,1},
-              {0,0,1,0},
+              {0,1,0,0},
+              {0,1,1,0},
+              {0,1,0,0},
               {0,0,0,0}}),
             MakeOrientation(new int[,] {
               {0,0,0,0},
-              {0,0,0,0},
-              {0,1,1,1},
-              {0,0,1,0}}),
+              {1,1,1,0},
+              {0,1,0,0},
+              {0,0,0,0}}),
             MakeOrientation(new int[,] {
               {0,1,0,0},
               {1,1,0,0},
@@ -127,23 +125,13 @@
             MakeOrientation(new int[,] {
               {0,0,0,0},
               {0,1,1,0},
-              {0,0,1,1},
-              {0,0,0,0}}),
-            MakeOrientation(new int[,] {
-              {0,0,0,1},
-              {0,0,1,1},
-              {0,0,1,0},
-              {0,0,0,0}}),
-            MakeOrientation(new int[,] {
-              {0,0,0,0},
-              {0,0,0,0},
               {1,1,0,0},
-              {0,1,1,0}}),
-            MakeOrientation(new int[,] {
-              {0,0,1,0},
-              {0,1,1,0},
-              {0,1,0,0},
               {0,0,0,0}}),
+            MakeOrientation(new int[,] {
+              {0,0,0,0},
+              {0,1,0,0},
+              {0,1,1,0},
+              {0,0,1,0}}),
           };
           break;
       }
@@ -151,6 +139,11 @@
       return shape;
     }
 
+    /// <summary>
+    /// Takes a grid of 1s and 0s to create an orientation for a shape
+    /// </summary>
+    /// <param name="grid">Grid of 1s and 0s</param>
+    /// <returns>Orientation object</returns>
     private static Orientation MakeOrientation(int[,] grid) {
       Orientation orientation = new Orientation();
       for (int r = 0; r < grid.GetLength(0); r++) {
