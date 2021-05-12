@@ -1,4 +1,4 @@
-﻿namespace NewTetris {
+namespace NewTetris {
   partial class FrmMain {
     /// <summary>
     /// Required designer variable.
@@ -50,18 +50,19 @@
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(76, 25);
       this.label2.TabIndex = 8;
-      this.label2.Text = "Level:";
+      this.label2.Text = "Score:";
       // 
       // lblLevel
       // 
       this.lblLevel.AutoSize = true;
       this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lblLevel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-      this.lblLevel.Location = new System.Drawing.Point(145, 165);
+            //Alter Value Here
+      this.lblLevel.Location = new System.Drawing.Point(48, 140);
       this.lblLevel.Name = "lblLevel";
       this.lblLevel.Size = new System.Drawing.Size(42, 25);
       this.lblLevel.TabIndex = 10;
-      this.lblLevel.Text = "XX";
+      this.lblLevel.Text = "Level:";
       // 
       // label3
       // 
@@ -115,6 +116,5 @@
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.GroupBox grpNextBlock;
     private System.Windows.Forms.Timer tmrCurrentPieceFall;
-  }
+    }
 }
-
