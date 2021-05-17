@@ -57,8 +57,7 @@ namespace NewTetris {
       this.lblLevel.AutoSize = true;
       this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lblLevel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            //Alter Value Here
-      this.lblLevel.Location = new System.Drawing.Point(48, 140);
+      this.lblLevel.Location = new System.Drawing.Point(145, 165);
       this.lblLevel.Name = "lblLevel";
       this.lblLevel.Size = new System.Drawing.Size(42, 25);
       this.lblLevel.TabIndex = 10;
