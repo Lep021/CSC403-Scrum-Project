@@ -15,6 +15,7 @@ namespace NewTetris
     public partial class FrmMain : Form
     {
         public Game game;
+        //Added Varible
         int lv = 1;
         int score = 0;
         int scounter = 0;
@@ -28,15 +29,17 @@ namespace NewTetris
             Game.imgPiece = Resources.block_piece;
             game = new Game();
             Game.field = lblPlayingField;
-            System.Windows.Forms.MessageBox.Show("Thank You For Trying out our Game. :) \n Use the right, left, and down arrow key to move the piece. \n " +
-                "Press Z to rotate the piece counter clockwise. \n Press X to rotate the piece clockwise. \n *Developer Tool For Testing* \n " +
-                "Press C to advance level \n Press V to increase your score \n Press B to speed up. \n Press N to reshow this message \n Press M to exit the game. \n Press Ok to start Playing.");
+
+            System.Windows.Forms.MessageBox.Show("Thank You For Trying out our Game. :) \nUse the right, left, and down arrow key to move the piece. \n" +
+            "Press Z to rotate the piece counter clockwise. \nPress X to rotate the piece clockwise. \nPress V to reshow this message \nPress Enter to pause the game. \nPress ESC to exit the game." +
+            "\nPress Ok to start Playing.");
+
             game.NextShape();
 
-            this.lblLevel.Text = "Level: " + lv;
-            this.label2.Text = "Score: " + score;
-            this.tmrCurrentPieceFall.Interval = spd;
-
+            lblLevel.Location = new System.Drawing.Point(48, 140);
+            lblLevel.Text = "Level: " + lv;
+            label2.Text = "Score: " + score;
+            tmrCurrentPieceFall.Interval = 500;
         }
 
         private void tmrCurrentPieceFall_Tick(object sender, EventArgs e)
@@ -48,42 +51,61 @@ namespace NewTetris
                     Game.curShape.DissolveIntoField();
                     Game.curShape = null;
                     game.NextShape();
-                    /*
-                    ///Attempting to work with Block.
-                    Game.field = grpNextBlock;
-                    //Game.field = lblPlayingField;
-                    game.NextShape();
-                    this.tmrCurrentPieceFall.Interval = pause;
-                    Game.field = lblPlayingField;
-                    //Game.field = grpNextBlock;
-                    game.NextShape();
-                    Game.field = lblPlayingField;
-                    this.tmrCurrentPieceFall.Interval = pause;*/
 
+                    ///Stop game once block go over game field boundary.
+                    for (int i = 0; i < 15; i++) { 
+                       if (PlayingField.GetInstance().IsEmpty(0, i) == false)
+                        {
+                            tmrCurrentPieceFall.Interval = pause;
+                            System.Windows.Forms.MessageBox.Show("A piece has hit the top, ending the game. \nThank you for playing. \nFinal Score: " + score + "\nFinal level: " + lv);
+                            System.Windows.Forms.Application.ExitThread();
+                        } 
+                    }
 
                     ///Added Value
-                    score += 100;
-                    scounter += 100;
-                    this.label2.Text = "Score: " + score;
-                    if (scounter == 300)
-                    {
-                        lv = lv + 1;
-                        this.lblLevel.Text = "Level: " + lv.ToString();
-                        ///Prevent speed from going into the negative.
-                        if (scounter == 300 && spd >= 105)
+                    ///Level and Score part of the game.
+                    if (lv < 5)
                         {
-                            spd = spd - 50;
-                            this.tmrCurrentPieceFall.Interval = spd;
+                            score += 100;
+                            scounter += 1000;
+                            spd = 500;
                         }
-                        else
+                        else if (lv >= 5 && lv < 10)
                         {
+                            score += 300;
+                            scounter += 600;
+                            spd = 400;
+                        }
+                        else if (lv >= 10 && lv < 15)
+                        {
+                            score += 500;
+                            scounter += 600;
+                            spd = 300;
+                        }
+                        else if (lv >= 15 && lv < 20)
+                        {
+                            score += 1000;
+                            scounter += 500;
+                            spd = 200;
+                        }
+                        else if (lv >= 20)
+                        {
+                            score += 2000;
+                            scounter += 300;
                             spd = 100;
                         }
-                        scounter = 0;
+
+                        tmrCurrentPieceFall.Interval = spd;
+                        label2.Text = "Score: " + score;
+                        if (scounter >= 3000)
+                        {
+                            lv = lv + 1;
+                            lblLevel.Text = "Level: " + lv.ToString();
+                            scounter = 0;
+                        }
                     }
                 }
             }
-        }
 
         private void FrmMain_KeyUp(object sender, KeyEventArgs e)
         {
@@ -109,45 +131,30 @@ namespace NewTetris
             {
                 Game.curShape.TryMoveDown();
             }
-            /// Testing Level Up
-            else if (e.KeyCode == Keys.C)
-            {
-                lv = lv + 1;
-                this.lblLevel.Text = "Level: " + lv.ToString();
-            }
-            /// Testing Score Up
+
+            /// Testing Message
             else if (e.KeyCode == Keys.V)
             {
-                score = score + 50;
-                this.label2.Text = "Score: " + score;
+                tmrCurrentPieceFall.Interval = pause;
+                System.Windows.Forms.MessageBox.Show("Thank You For Trying out our Game. :) \nUse the right, left, and down arrow key to move the piece. \n" +
+                "Press Z to rotate the piece counter clockwise. \nPress X to rotate the piece clockwise. \nPress V to reshow this message \nPress Enter to pause the game. \nPress ESC to exit the game." +
+                "\nPress Ok to start Playing.");
+                tmrCurrentPieceFall.Interval = spd;
             }
-            /// Testing Speed Up
-            else if (e.KeyCode == Keys.B)
+
+            /// Pause Command
+            else if (e.KeyCode == Keys.Enter)
             {
-                if ( spd >= 105)
-                {
-                    spd = spd - 50;
-                    this.tmrCurrentPieceFall.Interval = spd;
-                }
-                else
-                {
-                    spd = 100;
-                }
+                tmrCurrentPieceFall.Interval = pause;
+                System.Windows.Forms.MessageBox.Show("The Game is Pause. Press Ok to Continue.");
+                tmrCurrentPieceFall.Interval = spd;
             }
-            /// Testing Message
-            else if (e.KeyCode == Keys.N)
+
+            ///Force Closed Program
+            else if (e.KeyCode == Keys.Escape)
             {
-                this.tmrCurrentPieceFall.Interval = pause;
-                System.Windows.Forms.MessageBox.Show("Thank You For Trying out our Game. :) \n Use the right, left, and down arrow key to move the piece. \n " +
-    "Press Z to rotate the piece counter clockwise. \n Press X to rotate the piece clockwise. \n *Developer Tool For Testing* \n " +
-    "Press C to advance level \n Press V to increase your score \n Press B to speed up. \n Press N to reshow this message \n Press M to exit the game. \n Press Ok to start Playing.");
-                this.tmrCurrentPieceFall.Interval = spd;
-            }
-            /// Testing Speed Up
-            else if (e.KeyCode == Keys.M)
-            {
-                this.tmrCurrentPieceFall.Interval = pause;
-                System.Windows.Forms.MessageBox.Show("Thank you for playing. \n Final Score: " + score + "\n Highest level: " + lv);
+                tmrCurrentPieceFall.Interval = pause;
+                System.Windows.Forms.MessageBox.Show("Thank you for playing. \n Final Score: " + score + "\n Final level: " + lv);
                 System.Windows.Forms.Application.ExitThread();
             }
         }
