@@ -62,7 +62,14 @@ namespace NewTetris_Lib {
     /// unused and not implemented
     /// </summary>
     public void CheckClearAllRows() {
-
+            for(int i = 0; i < 22; i++)
+            {
+                for(int j = 0; j < 15; j++)
+                {
+                    field[i, j] = 1;
+                    Console.WriteLine(field);
+                }
+            }
     }
   }
 }

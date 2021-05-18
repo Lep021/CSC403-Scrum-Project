@@ -36,6 +36,8 @@ namespace NewTetris
 
             game.NextShape();
 
+            //PlayingField.GetInstance().CheckClearAllRows();
+
             lblLevel.Location = new System.Drawing.Point(48, 140);
             lblLevel.Text = "Level: " + lv;
             label2.Text = "Score: " + score;

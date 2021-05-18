@@ -33,6 +33,7 @@ namespace NewTetris_Lib {
     /// Current shape dropping onto the playing field
     /// </summary>
     public static Shape curShape;
+       
 
     /// <summary>
     /// Link to widget displaying the playing field. 
@@ -63,6 +64,7 @@ namespace NewTetris_Lib {
       int shapeNum = random.Next(7);
       ShapeType shapeType = (ShapeType)shapeNum;
       curShape = ShapeFactory.MakeShape(shapeType);
+      
     }
   }
 }
