@@ -17,7 +17,7 @@ namespace NewTetris
         public Game game;
         //Added Varible
         int lv = 1;
-        int score = 0;
+        public int score = 0;
         int scounter = 0;
         int spd = 500;
         ///Need to make pausing the game better if possible.
@@ -50,6 +50,7 @@ namespace NewTetris
                 {
                     Game.curShape.DissolveIntoField();
                     Game.curShape = null;
+                    PlayingField.GetInstance().CheckClearAllRows();
                     game.NextShape();
 
                     ///Stop game once block go over game field boundary.
