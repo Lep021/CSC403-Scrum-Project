@@ -17,7 +17,7 @@ namespace NewTetris
         public Game game;
         //Added Varible
         int lv = 1;
-        int score = 0;
+        public int score = 0;
         int scounter = 0;
         int spd = 500;
         String rank;
