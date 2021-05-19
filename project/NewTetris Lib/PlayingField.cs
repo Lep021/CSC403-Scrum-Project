@@ -67,15 +67,12 @@ namespace NewTetris_Lib {
     public void CheckClearAllRows() {
             Game.field.Controls.Clear();
 
-            for(int i = 0; i < 22; i++)
+            for(int j = 0; j < 15; j++)
             {
-                for(int j = 0; j < 15; j++)
+                for(int i = 0; i < 22; i++)
                 {
-                    if(j == 5 && i == 5)
-                    {
                     field[i, j] = 0;
-                    //tempPiece = new Piece(new Position(i * Piece.SIZE, j * Piece.SIZE));
-                    }
+                    tempPiece = new Piece(new Position(j * Piece.SIZE, i * Piece.SIZE));
                 }
             }
             
