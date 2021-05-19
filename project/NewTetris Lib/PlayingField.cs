@@ -24,6 +24,9 @@ namespace NewTetris_Lib {
     /// </summary>
     public event Action OnRowClear;
 
+
+    public Piece tempPiece;
+
     /// <summary>
     /// Default constructor initializing the field
     /// to 22 rows and 15 columns
@@ -62,14 +65,20 @@ namespace NewTetris_Lib {
     /// unused and not implemented
     /// </summary>
     public void CheckClearAllRows() {
+            Game.field.Controls.Clear();
+
             for(int i = 0; i < 22; i++)
             {
                 for(int j = 0; j < 15; j++)
                 {
-                    field[i, j] = 1;
-                    Console.WriteLine(field);
+                    if(j == 5 && i == 5)
+                    {
+                    field[i, j] = 0;
+                    //tempPiece = new Piece(new Position(i * Piece.SIZE, j * Piece.SIZE));
+                    }
                 }
             }
+            
     }
   }
 }

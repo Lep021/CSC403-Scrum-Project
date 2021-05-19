@@ -33,10 +33,9 @@ namespace NewTetris
             System.Windows.Forms.MessageBox.Show("Thank You For Trying out our Game. :) \nUse the right, left, and down arrow key to move the piece. \n" +
             "Press Z to rotate the piece counter clockwise. \nPress X to rotate the piece clockwise. \nPress V to reshow this message \nPress Enter to pause the game. \nPress ESC to exit the game." +
             "\nPress Ok to start Playing.");
-
+            
+            PlayingField.GetInstance().CheckClearAllRows();
             game.NextShape();
-
-            //PlayingField.GetInstance().CheckClearAllRows();
 
             lblLevel.Location = new System.Drawing.Point(48, 140);
             lblLevel.Text = "Level: " + lv;
@@ -50,6 +49,7 @@ namespace NewTetris
             {
                 if (!Game.curShape.TryMoveDown())
                 {
+                    PlayingField.GetInstance().CheckClearAllRows();
                     Game.curShape.DissolveIntoField();
                     Game.curShape = null;
                     game.NextShape();
