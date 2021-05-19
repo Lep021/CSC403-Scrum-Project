@@ -29,6 +29,7 @@ namespace NewTetris
             Game.imgPiece = Resources.block_piece;
             game = new Game();
             Game.field = lblPlayingField;
+            Game.nextShape = grpNextBlock;
 
             System.Windows.Forms.MessageBox.Show("Thank You For Trying out our Game. :) \nUse the right, left, and down arrow key to move the piece. \n" +
             "Press Z to rotate the piece counter clockwise. \nPress X to rotate the piece clockwise. \nPress V to reshow this message \nPress Enter to pause the game. \nPress ESC to exit the game." +
@@ -51,6 +52,7 @@ namespace NewTetris
                     Game.curShape.DissolveIntoField();
                     Game.curShape = null;
                     PlayingField.GetInstance().CheckClearAllRows();
+                    Game.nextShape.Controls.Clear();
                     game.NextShape();
 
                     ///Stop game once block go over game field boundary.

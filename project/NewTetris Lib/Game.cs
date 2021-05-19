@@ -24,6 +24,13 @@ namespace NewTetris_Lib {
     private int score;
 
     /// <summary>
+    /// Boolean used to determine which display to draw piece
+    /// </summary>
+    public static bool next;
+
+    public int nextShapen;
+
+    /// <summary>
     /// Random object used to randomly select next shape
     /// to appear in level
     /// </summary>
@@ -33,6 +40,16 @@ namespace NewTetris_Lib {
     /// Current shape dropping onto the playing field
     /// </summary>
     public static Shape curShape;
+
+    /// <summary>
+    /// Next shape to drop
+    /// </summary>
+    public static Shape NShape;
+
+    /// <summary>
+    /// Link to widget displaying the next shape
+    /// </summary>
+    public static Control nextShape;
 
     /// <summary>
     /// Link to widget displaying the playing field. 
@@ -60,9 +77,26 @@ namespace NewTetris_Lib {
     /// Generates the next shape to be put into the playing field
     /// </summary>
     public void NextShape() {
-      int shapeNum = random.Next(7);
-      ShapeType shapeType = (ShapeType)shapeNum;
-      curShape = ShapeFactory.MakeShape(shapeType);
+        if (NShape == null)
+        {
+            next = false;
+            int shapeNum1 = random.Next(7);
+            ShapeType shapeType1 = (ShapeType)shapeNum1;
+            curShape = ShapeFactory.MakeShape(shapeType1);
+        }
+        else
+        {
+            next = false;
+            ShapeType shapeType1 = (ShapeType)nextShapen;
+            curShape = ShapeFactory.MakeShape(shapeType1);
+        }
+
+        NShape = null;
+        next = true;
+        nextShapen = random.Next(7);
+        ShapeType shapeType = (ShapeType)nextShapen;
+        NShape = ShapeFactory.MakeShape(shapeType);
+
     }
   }
 }

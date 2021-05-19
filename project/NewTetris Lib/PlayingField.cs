@@ -75,6 +75,8 @@ namespace NewTetris_Lib {
         /// </summary>
         public void CheckClearAllRows()
         {
+            double multiplier = 0.5;
+            double clearscore = 1000;
             for (int i = 0; i < 22; i++)
             {
                 for (int j = 0; j < 15; j++)
@@ -88,11 +90,12 @@ namespace NewTetris_Lib {
                         if (j == 14)
                         {
                             ClearRow(i);
+                            multiplier = multiplier * 2;
                         }
-
                     }
                 }
             }
+            clearscore = clearscore * multiplier;
         }
         /// <summary>
         /// Clears the row
@@ -125,6 +128,7 @@ namespace NewTetris_Lib {
                 {
                     if(field[i,j] == 1)
                     {
+                        Game.next = false;
                         tempPiece = new Piece(new Position(j * Piece.SIZE, i * Piece.SIZE));
                     }
                 }

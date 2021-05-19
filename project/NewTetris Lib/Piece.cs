@@ -30,7 +30,14 @@ namespace NewTetris_Lib {
       pic.BackgroundImage = Game.imgPiece;
       pic.BackgroundImageLayout = ImageLayout.Stretch;
       pic.Size = new System.Drawing.Size(SIZE, SIZE);
-      Game.field.Controls.Add(pic);
+            if (Game.next == true)
+            {
+                Game.nextShape.Controls.Add(pic);
+            }
+            else
+            {
+                Game.field.Controls.Add(pic);
+            }
       UpdateImgPos();
     }
     
