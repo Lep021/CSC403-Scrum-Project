@@ -204,7 +204,7 @@ namespace NewTetris
             else if (e.KeyCode == Keys.Escape)
             {
                 tmrCurrentPieceFall.Interval = pause;
-                System.Windows.Forms.MessageBox.Show("A piece has hit the top, ending the game. \n\nThank you for playing. \n\nFinal Score: " + score + "\n\nFinal level: " + lv + "\n\nRank: " + rank);
+                System.Windows.Forms.MessageBox.Show("Thank you for playing. \n\nFinal Score: " + score + "\n\nFinal level: " + lv + "\n\nRank: " + rank);
                 System.Windows.Forms.Application.ExitThread();
             }
             ///Pratice Mode Program
