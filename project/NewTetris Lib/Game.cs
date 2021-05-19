@@ -28,6 +28,9 @@ namespace NewTetris_Lib {
     /// </summary>
     public static bool next;
 
+    /// <summary>
+    /// variable to hold the integer to pass to the current shape
+    /// </summary>
     public int nextShapen;
 
     /// <summary>
